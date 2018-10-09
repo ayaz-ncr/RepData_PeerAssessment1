@@ -52,7 +52,7 @@ print(median(dailysteps$steps))
 # plot interval vs steps (averaged across all days)
 avg_steps_by_interval<-aggregate(activity$steps, by = list(activity$interval), mean, na.rm=TRUE, na.action = NULL)
 colnames(avg_steps_by_interval)<-c("interval", "steps")
-plot(avg_steps_by_interval$interval, avg_steps_by_interval$steps, type = 'l', xlab="Interval", ylab="Average Steps", lwd=2, col="red")
+plot(avg_steps_by_interval$interval, avg_steps_by_interval$steps, type = 'l', xlab="Interval", ylab="Average Steps")
 ```
 
 
@@ -107,7 +107,7 @@ avg_steps_by_interval_weekend<-aggregate(activity_new$steps, by = list(activity_
 colnames(avg_steps_by_interval_weekend)<-c("interval", "weekend", "steps")
 library(ggplot2)
 qplot(avg_steps_by_interval_weekend$interval, avg_steps_by_interval_weekend$steps, data = avg_steps_by_interval_weekend,
-      facets = avg_steps_by_interval_weekend$weekend~., geom = c("point", "smooth"),
+      facets = avg_steps_by_interval_weekend$weekend~., geom = "line",
       xlab="Interval", ylab = "Steps", main = "5-min Interval vs steps (on Weekday and Weekend)")
 
 ```
